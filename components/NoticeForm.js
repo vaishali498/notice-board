@@ -82,24 +82,24 @@ export default function NoticeForm({ initialNotice = null }) {
   return (
     <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-5">
       <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">Title</label>
+        <label className="mb-1 block text-sm font-medium text-ink">Title</label>
         <input
           type="text"
           value={form.title}
           onChange={(e) => update("title", e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+          className="w-full rounded-sm border border-cork-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
           placeholder="e.g. Mid-semester exam schedule released"
         />
         {errors.title && <p className="mt-1 text-xs text-red-600">{errors.title}</p>}
       </div>
 
       <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">Body</label>
+        <label className="mb-1 block text-sm font-medium text-ink">Body</label>
         <textarea
           value={form.body}
           onChange={(e) => update("body", e.target.value)}
           rows={5}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+          className="w-full rounded-sm border border-cork-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
           placeholder="Full details of the notice..."
         />
         {errors.body && <p className="mt-1 text-xs text-red-600">{errors.body}</p>}
@@ -107,11 +107,11 @@ export default function NoticeForm({ initialNotice = null }) {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Category</label>
+          <label className="mb-1 block text-sm font-medium text-ink">Category</label>
           <select
             value={form.category}
             onChange={(e) => update("category", e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+            className="w-full rounded-sm border border-cork-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -122,11 +122,11 @@ export default function NoticeForm({ initialNotice = null }) {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Priority</label>
+          <label className="mb-1 block text-sm font-medium text-ink">Priority</label>
           <select
             value={form.priority}
             onChange={(e) => update("priority", e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+            className="w-full rounded-sm border border-cork-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
           >
             {PRIORITIES.map((p) => (
               <option key={p} value={p}>
@@ -138,28 +138,28 @@ export default function NoticeForm({ initialNotice = null }) {
       </div>
 
       <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">Publish date</label>
+        <label className="mb-1 block text-sm font-medium text-ink">Publish date</label>
         <input
           type="date"
           value={form.publishDate}
           onChange={(e) => update("publishDate", e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+          className="w-full rounded-sm border border-cork-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
         />
         {errors.publishDate && <p className="mt-1 text-xs text-red-600">{errors.publishDate}</p>}
       </div>
 
       <div>
-        <label className="mb-1 block text-sm font-medium text-gray-700">
-          Image URL <span className="font-normal text-gray-400">(optional)</span>
+        <label className="mb-1 block text-sm font-medium text-ink">
+          Image URL <span className="font-normal text-ink/40">(optional)</span>
         </label>
         <input
           type="text"
           value={form.image}
           onChange={(e) => update("image", e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+          className="w-full rounded-sm border border-cork-300 bg-white px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
           placeholder="https://example.com/banner.jpg"
         />
-        <p className="mt-1 text-xs text-gray-400">
+        <p className="mt-1 text-xs text-ink/40">
           Paste a hosted image link (e.g. from Imgur). File upload isn't included in this build — see the README.
         </p>
       </div>
@@ -179,7 +179,7 @@ export default function NoticeForm({ initialNotice = null }) {
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="rounded-lg px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-100"
+          className="rounded-lg px-5 py-2.5 text-sm font-medium text-ink/70 hover:bg-gray-100"
         >
           Cancel
         </button>
