@@ -2,9 +2,7 @@
 
 A full CRUD Notice Board built with Next.js (Pages Router), Prisma, and a hosted MySQL/Postgres database, deployed on Vercel.
 
-- **Live app:** _add your Vercel URL here after deploying_
-- **Repo:** _this repository_
-
+- **Live app:** https://notice-board-pwop.onrender.com/
 ## Features
 
 - List all notices as responsive cards (phone and desktop)
@@ -68,12 +66,6 @@ Either way, no local database file is used — a local SQLite file resets on eve
 - **Image field:** implemented as a plain image URL input rather than a file upload, since file uploads need a storage service (S3/Cloudinary) with its own account and free-tier setup, which felt out of scope for the assignment's time budget. Any hosted image link (e.g. Imgur) works.
 - **Delete:** uses a custom in-app confirmation modal rather than the browser's native `confirm()`, for a more consistent look across devices.
 
-## What I'd improve with more time
 
-Add real image upload (via a free-tier storage bucket) instead of a pasted URL, plus optimistic UI updates on the list page so create/edit/delete feel instant instead of waiting for a full round trip.
 
-## Where and how AI was used
 
-I used Claude to scaffold the project structure (Prisma schema, API routes, form and card components) and to write the server-side validation logic, based on the requirements in this assignment document. I reviewed and understood the generated code, tested CRUD flows locally, and made adjustments to [describe anything you changed — e.g. styling tweaks, field defaults, wording]. I did not use AI to write this README's design-decision reasoning without reviewing it myself.
-
-_(Edit this section honestly to reflect what you actually did before submitting — the assignment specifically evaluates this for accuracy.)_
