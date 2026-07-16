@@ -1,6 +1,6 @@
 # Notice Board
 
-A full CRUD Notice Board built with Next.js (Pages Router), Prisma, and a hosted MySQL/Postgres database, deployed on Vercel.
+A full CRUD Notice Board built with Next.js (Pages Router), Prisma, and a hosted PostgreSQL database, deployed on Render.
 
 - **Live app:** https://notice-board-pwop.onrender.com/
 ## Features
@@ -16,56 +16,59 @@ A full CRUD Notice Board built with Next.js (Pages Router), Prisma, and a hosted
 
 - **Framework:** Next.js 14, Pages Router
 - **Database access:** Prisma ORM
-- **Database:** any free hosted MySQL/Postgres (developed against TiDB Cloud / Neon)
+- **Database:** hosted PostgreSQL (Neon free tier)
 - **Styling:** Tailwind CSS
-- **Hosting:** Vercel (Hobby/free tier)
+- **Hosting:** Render (free tier)
 
 ## Running locally
 
 1. Clone the repo and install dependencies:
-   ```bash
+```bash
    git clone <this-repo-url>
    cd notice-board
    npm install
-   ```
+```
 
-2. Create a free hosted database (see "Database setup" below) and copy `.env.example` to `.env`:
-   ```bash
+2. Create a free hosted Postgres database on [Neon](https://neon.tech) and copy `.env.example` to `.env`:
+```bash
    cp .env.example .env
-   ```
+```
    Fill in `DATABASE_URL` with your real connection string.
 
 3. Push the schema to your database:
-   ```bash
+```bash
    npx prisma db push
-   ```
+```
 
 4. Run the dev server:
-   ```bash
+```bash
    npm run dev
-   ```
+```
    Open [http://localhost:3000](http://localhost:3000).
 
 ### Database setup
 
-This project ships configured for **MySQL** (`prisma/schema.prisma` → `provider = "mysql"`), matching TiDB Cloud's free serverless tier. If you use a Postgres provider instead (Neon, Supabase), change that line to `provider = "postgresql"` before running `prisma db push`.
+This project is configured for **PostgreSQL** (`prisma/schema.prisma` → `provider = "postgresql"`), matching Neon's free serverless tier. If you use a MySQL provider instead (TiDB Cloud), change that line to `provider = "mysql"` before running `prisma db push`.
 
-Either way, no local database file is used — a local SQLite file resets on every Vercel deploy, so a hosted DB is required for data to persist.
+Either way, no local database file is used — a local SQLite file resets on every redeploy, so a hosted DB is required for data to persist.
 
-## Deploying
+## Deploying (Render)
 
 1. Push this repo to a public GitHub repository.
-2. Import the repo into [Vercel](https://vercel.com).
-3. Add an environment variable `DATABASE_URL` in the Vercel project settings, using the same hosted database connection string.
-4. Deploy. Vercel runs `prisma generate` automatically via the `postinstall` script.
-5. Make sure `npx prisma db push` has been run at least once against the same database so the table exists.
+2. Create a new Web Service on [Render](https://render.com) and connect the repo.
+3. Build command: `npm install && npx prisma generate && npm run build`
+4. Start command: `npm start`
+5. Add an environment variable `DATABASE_URL` in Render's Environment settings, using the same hosted database connection string.
+6. Deploy. Render automatically installs dependencies and builds the app.
+7. Make sure `npx prisma db push` has been run at least once against the same database so the table exists.
 
 ## Design decisions (left open by the spec)
 
 - **Normal notice ordering:** sorted by `publishDate` descending (newest first) within each priority tier.
-- **Image field:** implemented as a plain image URL input rather than a file upload, since file uploads need a storage service (S3/Cloudinary) with its own account and free-tier setup, which felt out of scope for the assignment's time budget. Any hosted image link (e.g. Imgur) works.
+- **Image field:** implemented as a plain image URL input rather than a file upload, since file uploads need a storage service (S3/Cloudinary) with its own account and free-tier setup. Any hosted image link (e.g. Imgur) works.
 - **Delete:** uses a custom in-app confirmation modal rather than the browser's native `confirm()`, for a more consistent look across devices.
 
+## What I'd improve with more time
 
-
+Add real image upload (via a free-tier storage bucket) instead of a pasted URL, plus optimistic UI updates on the list page so create/edit/delete feel instant instead of waiting for a full round trip.
 
